@@ -81,7 +81,7 @@
         <!-- Encabezado -->
         <div class="bg-[#111111] text-white p-8 flex justify-between items-center border-b-4 border-yellow-400">
             <div class="w-64">
-                <!-- Asegúrate de que Logo.png esté en la misma carpeta que este archivo -->
+                <!-- Referencia al logo -->
                 <img src="Logo.png" alt="RST Construcciones Integrales" class="w-full h-auto object-contain" onerror="this.src='https://via.placeholder.com/300x100/111111/eab308?text=RST+CONSTRUCCIONES'; this.classList.add('border','border-yellow-400','p-2')">
             </div>
             <div class="text-right">
@@ -267,7 +267,9 @@
         });
 
         function obtenerValor(id) {
-            const valor = parseFloat(document.getElementById(id).value);
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            const valor = parseFloat(el.value);
             return isNaN(valor) ? 0 : valor;
         }
 
@@ -289,7 +291,7 @@
             const totalDevengado = sueldoProporcional + auxTransporte + horasExtras + bonificaciones;
 
             // 3. Fórmulas de Deducciones (Descuentos)
-            // En Colombia la base para salud y pensión es el Total Devengado MENOS el Auxilio de Transporte y Bonificaciones no prestacionales (simplificado a total devengado - transporte para uso general)
+            // Base para salud y pensión
             let baseSeguridadSocial = (sueldoProporcional + horasExtras);
             if (baseSeguridadSocial < 0) baseSeguridadSocial = 0;
 
